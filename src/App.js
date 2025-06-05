@@ -1,11 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline } from "@mui/material";
+import LoginForm from './components/LoginForm';
+import Login from "./pages/Login";
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <CssBaseline />
+      <Login />
+    </>
   );
 }
 
