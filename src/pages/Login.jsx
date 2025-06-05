@@ -1,4 +1,4 @@
-import { Container, Typography, Link, Box, Divider, IconButton } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import styled from "@emotion/styled";
 import LoginForm from "../components/LoginForm";
 import Logo from "../components/Logo";
@@ -10,10 +10,12 @@ const RootStyle = styled("div")({
     height: "100vh",
     display: "grid",
     placeItems: "center",
+    boxShadow: "0px 1px 5px 5px #f5f5f5"
 });
 
 const HeadingStyle = styled(Box)({
     textAlign: "center",
+    padding: '24px'
 });
 
 const ContentStyle = styled("div")({
@@ -34,7 +36,7 @@ const Login = ({ setAuth }) => {
                 <ContentStyle>
                     <HeadingStyle component={motion.div}>
                         <Logo />
-                        <Typography sx={{ color: "text.secondary", mb: 5 }}>
+                        <Typography variant="h4" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
                             Valtus Cart
                         </Typography>
                     </HeadingStyle>
@@ -46,12 +48,10 @@ const Login = ({ setAuth }) => {
                         variant="body2"
                         align="center"
                         sx={{ mt: 3 }}
+                        style={{ cursor: 'pointer' }}
                     >
-                        Login with google?{" "}
-                        <IconButton
-                        >
-                            <span style={{ fontWeight: 'bold', fontSize: '24px' }}>G</span>
-                        </IconButton>
+                    Login with google{" "}
+                    <p style={{ fontWeight: 'bold', fontSize: '24px', color: 'red', margin: '0px' }}>G</p>
                     </Typography>
                 </ContentStyle>
             </Container>
