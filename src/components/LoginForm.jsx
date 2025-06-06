@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 const animate = {
@@ -24,7 +25,8 @@ const animate = {
   },
 };
 
-const LoginForm = ({ setAuth }) => {
+const LoginForm = ({ setAuth, isGoogleForm }) => {
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -115,35 +117,44 @@ const LoginForm = ({ setAuth }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={animate}
           >
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-              sx={{ my: 2 }}
-            >
+            {!isGoogleForm && (
+              <>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  sx={{ my: 2 }}
+                >
 
-              <Link
-                variant="subtitle2"
-                to="#"
-                underline="hover"
-                style={{ cursor: 'pointer' }}
-              >
-                Forgot password?
-              </Link>
-            </Stack>
+                  <Link
+                    variant="subtitle2"
+                    to="#"
+                    underline="hover"
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Forgot password?
+                  </Link>
+                </Stack>
+              </>
+            )}
             <Box sx={{ width: '100%' }}>
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
-                <Grid item size={6}>
+                {!isGoogleForm && (
+                  <Grid item size={6}>
                   <Button
                     fullWidth
                     variant="contained"
                     type="submit"
                     size="large"
+                    onClick={() => navigate('/signup')}
                   >
                     SignUp
                   </Button>
                 </Grid>
-                <Grid item size={6}>
+                )}
+                <Grid item size={isGoogleForm ? 12 : 6}
+                  sx={ isGoogleForm ? { my: 2 } : {}}
+                >
                   <Button
                     fullWidth
                     size="large"
