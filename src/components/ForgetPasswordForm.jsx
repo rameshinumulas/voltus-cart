@@ -26,7 +26,7 @@ const animate = {
   },
 };
 
-const SignupForm = ({ setAuth }) => {
+const ForgetPasswordForm = ({ setAuth }) => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -56,59 +56,6 @@ const SignupForm = ({ setAuth }) => {
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <Stack
-            component={motion.div}
-            initial={{ opacity: 0, y: 60 }}
-            animate={animate}
-            // direction={{ xs: "column", sm: "row" }}
-            spacing={3}
-          >
-            <TextField
-              fullWidth
-              placeholder="FIRST NAME"
-              {...getFieldProps("firstName")}
-              error={Boolean(touched.firstName && errors.firstName)}
-              helperText={touched.firstName && errors.firstName}
-              slotProps={{
-                input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <BadgeIcon
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
-              }}
-            />
-
-            <TextField
-              fullWidth
-              placeholder="LAST NAME"
-              {...getFieldProps("lastName")}
-              error={Boolean(touched.lastName && errors.lastName)}
-              helperText={touched.lastName && errors.lastName}
-              slotProps={{
-                input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <BadgeIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
-              }}
-            />
-          </Stack>
-
-          <Stack
             spacing={3}
             component={motion.div}
             initial={{ opacity: 0, y: 40 }}
@@ -136,6 +83,34 @@ const SignupForm = ({ setAuth }) => {
                 ),
               }
               }}
+            />
+
+            <TextField
+              fullWidth
+              autoComplete="current-password"
+              type={showPassword ? "text" : "password"}
+              placeholder="OLD PASSWORD"
+              {...getFieldProps("password")}
+              slotProps={{
+                input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <IconButton
+                      edge="start"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      <Icon
+                        icon={
+                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                        }
+                      />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }
+              }}
+              error={Boolean(touched.password && errors.password)}
+              helperText={touched.password && errors.password}
             />
 
             <TextField
@@ -206,7 +181,7 @@ const SignupForm = ({ setAuth }) => {
               variant="contained"
               loading={isSubmitting}
             >
-              Sign up
+              update password
             </LoadingButton>
           </Box>
         </Stack>
@@ -215,4 +190,4 @@ const SignupForm = ({ setAuth }) => {
   );
 };
 
-export default SignupForm;
+export default ForgetPasswordForm;

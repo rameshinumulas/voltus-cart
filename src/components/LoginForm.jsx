@@ -69,7 +69,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
               fullWidth
               autoComplete="username"
               type="email"
-              placeholder="Email Address"
+              placeholder="EMAIL ID"
               {...getFieldProps("email")}
               error={Boolean(touched.email && errors.email)}
               helperText={touched.email && errors.email}
@@ -91,7 +91,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
               fullWidth
               autoComplete="current-password"
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="PASSWORD"
               {...getFieldProps("password")}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
@@ -130,9 +130,9 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
 
                   <Link
                     variant="subtitle2"
-                    to="#"
                     underline="hover"
                     style={{ cursor: 'pointer' }}
+                    onClick={() => navigate('/forgotPassword')}
                   >
                     Forgot password?
                   </Link>

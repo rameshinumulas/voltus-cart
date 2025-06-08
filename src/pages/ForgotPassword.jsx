@@ -1,9 +1,9 @@
 import { Container, Typography, Box } from "@mui/material";
 import styled from "@emotion/styled";
-// import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/LoginForm";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import SignupForm from "../components/SignupForm";
+import ForgetPasswordForm from "../components/ForgetPasswordForm";
 
 
 const RootStyle = styled("div")({
@@ -30,36 +30,37 @@ const ContentStyle = styled("div")({
 });
 
 
-const Signup = ({ setAuth, isGoogleForm }) => {
+const ForgotPassword = ({ setAuth, isGoogleForm }) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate('/');
+      navigate('/');
   };
   return (
     <RootStyle>
       <Container maxWidth="sm">
         <ContentStyle>
           <HeadingStyle component={motion.div}>
-            <Typography variant="h6" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
-              signup
+            <Typography variant="h5" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
+              Forget Password
             </Typography>
           </HeadingStyle>
-          <SignupForm />
 
-          <Typography
-            component={motion.p}
-            variant="body2"
-            align="center"
-            sx={{ mt: 3 }}
-            style={{ cursor: 'pointer' }}
-            onClick={handleNavigate}
-          >
-            Go to Login
-          </Typography>
+          <ForgetPasswordForm setAuth={setAuth} isGoogleForm={isGoogleForm} />
+          
+            <Typography
+              component={motion.p}
+              variant="body2"
+              align="center"
+              sx={{ mt: 3 }}
+              style={{ cursor: 'pointer' }}
+              onClick={handleNavigate}
+            >
+                 Go to Login
+            </Typography>
         </ContentStyle>
       </Container>
     </RootStyle>
   );
 };
 
-export default Signup;
+export default ForgotPassword;
