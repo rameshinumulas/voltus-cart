@@ -14,7 +14,8 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
-import SuccessMessage from "./SuccessMessage";
+import SuccessMessage from "../helpers/SuccessMessage";
+import { getInputAdornment } from "../helpers/getInputAdornment";
 
 /////////////////////////////////////////////////////////////
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -88,21 +89,7 @@ const SignupForm = ({ setAuth }) => {
               {...getFieldProps("firstName")}
               error={Boolean(touched.firstName && errors.firstName)}
               helperText={touched.firstName && errors.firstName}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton
-                        edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      >
-                        <BadgeIcon
-                        />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }
-              }}
+              slotProps={getInputAdornment(false, <BadgeIcon/>)}
             />
 
             <TextField
@@ -111,20 +98,7 @@ const SignupForm = ({ setAuth }) => {
               {...getFieldProps("lastName")}
               error={Boolean(touched.lastName && errors.lastName)}
               helperText={touched.lastName && errors.lastName}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton
-                        edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      >
-                        <BadgeIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }
-              }}
+              slotProps={getInputAdornment(false, <BadgeIcon/>)}
             />
           </Stack>
 
@@ -142,20 +116,7 @@ const SignupForm = ({ setAuth }) => {
               {...getFieldProps("email")}
               error={Boolean(touched.email && errors.email)}
               helperText={touched.email && errors.email}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton
-                        edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      >
-                        <EmailIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }
-              }}
+              slotProps={getInputAdornment(false, <EmailIcon/>)}
             />
 
             <TextField
@@ -164,24 +125,7 @@ const SignupForm = ({ setAuth }) => {
               type={showPassword ? "text" : "password"}
               placeholder="PASSWORD"
               {...getFieldProps("password")}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton
-                        edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                      >
-                        <Icon
-                          icon={
-                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                          }
-                        />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }
-              }}
+              slotProps={getInputAdornment(showPassword ? "eva:eye-fill": "eva:eye-off-fill", false, setShowPassword, showPassword)}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
             />
@@ -191,24 +135,7 @@ const SignupForm = ({ setAuth }) => {
               type={showConfirmPassword ? "text" : "password"}
               placeholder="CONFIRM PASSWORD"
               {...getFieldProps("confirmPassword")}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton
-                        edge="start"
-                        onClick={() => setShowConfirmPassword((prev) => !prev)}
-                      >
-                        <Icon
-                          icon={
-                            showConfirmPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                          }
-                        />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }
-              }}
+              slotProps={getInputAdornment(showConfirmPassword ? "eva:eye-fill": "eva:eye-off-fill", false, setShowConfirmPassword, showConfirmPassword)}
               error={Boolean(touched.confirmPassword && errors.confirmPassword)}
               helperText={touched.confirmPassword && errors.confirmPassword}
             />

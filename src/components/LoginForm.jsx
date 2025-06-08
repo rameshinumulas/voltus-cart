@@ -14,7 +14,8 @@ import {
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import SuccessMessage from "./SuccessMessage";
+import SuccessMessage from "../helpers/SuccessMessage";
+import { getInputAdornment } from "../helpers/getInputAdornment";
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 const animate = {
@@ -89,18 +90,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
               {...getFieldProps("email")}
               error={Boolean(touched.email && errors.email)}
               helperText={touched.email && errors.email}
-              slotProps={{
-                input: {
-                  startAdornment: <InputAdornment position="start">
-                    <IconButton
-                      onClick={() => setShowPassword((prev) => !prev)}
-                      edge="start"
-                    >
-                      <Icon icon="eva:email-fill" />
-                    </IconButton>
-                  </InputAdornment>,
-                },
-              }}
+              slotProps={getInputAdornment("eva:email-fill")}
             />
 
             <TextField
@@ -111,22 +101,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
               {...getFieldProps("password")}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
-              slotProps={{
-                input: {
-                  startAdornment: <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      {showPassword ? (
-                        <Icon icon="eva:eye-fill" />
-                      ) : (
-                        <Icon icon="eva:eye-off-fill" />
-                      )}
-                    </IconButton>
-                  </InputAdornment>,
-                },
-              }}
+              slotProps={getInputAdornment(showPassword ? "eva:eye-fill": "eva:eye-off-fill", false, setShowPassword, showPassword)}
             />
           </Box>
 
