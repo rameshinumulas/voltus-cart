@@ -14,6 +14,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import SuccessMessage from "./SuccessMessage";
 
 /////////////////////////////////////////////////////////////
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -32,6 +33,7 @@ const SignupForm = ({ setAuth }) => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [successMessage, handleMessage] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -59,6 +61,7 @@ const SignupForm = ({ setAuth }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: () => {
+      handleMessage(prv => !prv)
       setTimeout(() => {
         navigate("/", { replace: true });
       }, 2000);
@@ -69,6 +72,7 @@ const SignupForm = ({ setAuth }) => {
 
   return (
     <FormikProvider value={formik}>
+      {successMessage && <SuccessMessage successMsg={'Signup successful — you can now log in.'} />}
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <Stack

@@ -13,6 +13,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import SuccessMessage from "./SuccessMessage";
 
 /////////////////////////////////////////////////////////////
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -32,6 +33,7 @@ const ForgetPasswordForm = ({ setAuth }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [successMessage, handleMessage] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -57,6 +59,7 @@ const ForgetPasswordForm = ({ setAuth }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: () => {
+      handleMessage(prv => !prv)
       setTimeout(() => {
         navigate("/", { replace: true });
       }, 2000);
@@ -67,6 +70,7 @@ const ForgetPasswordForm = ({ setAuth }) => {
 
   return (
     <FormikProvider value={formik}>
+      {successMessage && <SuccessMessage successMsg={'Your password has been reset. Please log in'} />}
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <Stack

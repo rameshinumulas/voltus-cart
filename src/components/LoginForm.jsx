@@ -14,6 +14,7 @@ import {
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import SuccessMessage from "./SuccessMessage";
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 const animate = {
@@ -30,6 +31,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [successMessage, handleMessage] = useState(false);
 
  const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -47,6 +49,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
+      handleMessage(prv => !prv)
       setTimeout(() => {
         navigate('/welcomepage');
       }, 2000);
@@ -58,6 +61,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
 
   return (
     <FormikProvider value={formik}>
+      {successMessage && <SuccessMessage successMsg={'Login Successfully'} />}
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Box
           component={motion.div}
