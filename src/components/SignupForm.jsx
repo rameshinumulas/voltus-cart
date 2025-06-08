@@ -31,6 +31,7 @@ const SignupForm = ({ setAuth }) => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -183,7 +184,7 @@ const SignupForm = ({ setAuth }) => {
             <TextField
               fullWidth
               autoComplete="current-password"
-              type={showPassword ? "text" : "password"}
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="CONFIRM PASSWORD"
               {...getFieldProps("confirmPassword")}
               slotProps={{
@@ -192,11 +193,11 @@ const SignupForm = ({ setAuth }) => {
                     <InputAdornment position="start">
                       <IconButton
                         edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
                       >
                         <Icon
                           icon={
-                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                            showConfirmPassword ? "eva:eye-fill" : "eva:eye-off-fill"
                           }
                         />
                       </IconButton>

@@ -1,5 +1,6 @@
 import { Container, Typography, Box } from "@mui/material";
 import styled from "@emotion/styled";
+import GoogleIcon from '@mui/icons-material/Google';
 import LoginForm from "../components/LoginForm";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
@@ -58,15 +59,15 @@ const Login = ({ setAuth, isGoogleForm }) => {
                 variant="body2"
                 align="center"
                 sx={{ mt: 3 }}
-                style={{ cursor: 'pointer', marginTop: '0px' }}
+                style={{ cursor: 'pointer', marginTop: '0px', fontWeight: 'bold' }}
               >
                 Login with google{" "}
-                <p style={{ fontWeight: 'bold', fontSize: '24px', color: 'black', margin: '0px' }}>G</p>
+                <p style={{ margin: '0px' }}><GoogleIcon /></p>
               </Typography>
             ) : (
               <>
                 <Logo />
-                <Typography variant="h4" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
+                <Typography variant="h5" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
                   Valtus Cart
                 </Typography>
               </>
@@ -76,17 +77,17 @@ const Login = ({ setAuth, isGoogleForm }) => {
           <LoginForm setAuth={setAuth} isGoogleForm={isGoogleForm} />
           
             <Typography
-              component={motion.p}
+              component={motion.div}
               variant="body2"
               align="center"
               sx={{ mt: 3 }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', fontWeight: 'bold' }}
               onClick={handleNavigate}
             >
               {!isGoogleForm ? (
               <>
                 Login with google{" "}
-                <p style={{ fontWeight: 'bold', fontSize: '24px', color: 'black', margin: '0px' }}>G</p>
+                <p style={{ margin: '0px' }}><GoogleIcon /></p>
               </>
               ) : (
                 <>

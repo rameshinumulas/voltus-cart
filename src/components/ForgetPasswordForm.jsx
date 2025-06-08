@@ -30,6 +30,8 @@ const ForgetPasswordForm = ({ setAuth }) => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -100,7 +102,7 @@ const ForgetPasswordForm = ({ setAuth }) => {
             <TextField
               fullWidth
               autoComplete="current-password"
-              type={showPassword ? "text" : "password"}
+              type={showOldPassword ? "text" : "password"}
               placeholder="OLD PASSWORD"
               {...getFieldProps("oldPassword")}
               slotProps={{
@@ -109,11 +111,11 @@ const ForgetPasswordForm = ({ setAuth }) => {
                     <InputAdornment position="start">
                       <IconButton
                         edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
+                        onClick={() => setShowOldPassword((prev) => !prev)}
                       >
                         <Icon
                           icon={
-                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                            showOldPassword ? "eva:eye-fill" : "eva:eye-off-fill"
                           }
                         />
                       </IconButton>
@@ -155,7 +157,7 @@ const ForgetPasswordForm = ({ setAuth }) => {
             <TextField
               fullWidth
               autoComplete="current-password"
-              type={showPassword ? "text" : "password"}
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="CONFIRM PASSWORD"
               {...getFieldProps("confirmPassword")}
               slotProps={{
@@ -164,11 +166,11 @@ const ForgetPasswordForm = ({ setAuth }) => {
                     <InputAdornment position="start">
                       <IconButton
                         edge="start"
-                        onClick={() => setShowPassword((prev) => !prev)}
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
                       >
                         <Icon
                           icon={
-                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                            showConfirmPassword ? "eva:eye-fill" : "eva:eye-off-fill"
                           }
                         />
                       </IconButton>
