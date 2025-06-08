@@ -60,7 +60,6 @@ const Welcomepage = ({ setAuth, isGoogleForm }) => {
                   variant="text"
                   type="submit"
                   size="small"
-                  onClick={() => navigate('/signup')}
                 >
                   Skip
                 </Button>
@@ -73,6 +72,7 @@ const Welcomepage = ({ setAuth, isGoogleForm }) => {
                   size="small"
                   type="submit"
                   variant="text"
+                  onClick={() => navigate('/voltuscart')}
                 >
                   Next
                 </Button>

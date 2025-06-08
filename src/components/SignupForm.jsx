@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
+import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import BadgeIcon from '@mui/icons-material/Badge';
 import EmailIcon from '@mui/icons-material/Email';
@@ -31,7 +32,21 @@ const SignupForm = ({ setAuth }) => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const SignupSchema = {};
+  const SignupSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .required("First name required"),
+    lastName: Yup.string()
+      .required("Last name required"),
+    email: Yup.string()
+      .email("Email must be a valid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+    confirmPassword: Yup.string()
+      .required("Confirm Password is required")
+      .oneOf([Yup.ref('password')], "Passwords must match")
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -39,11 +54,11 @@ const SignupForm = ({ setAuth }) => {
       lastName: "",
       email: "",
       password: "",
+      confirmPassword: ''
     },
     validationSchema: SignupSchema,
     onSubmit: () => {
       setTimeout(() => {
-        setAuth(true);
         navigate("/", { replace: true });
       }, 2000);
     },
@@ -70,18 +85,18 @@ const SignupForm = ({ setAuth }) => {
               helperText={touched.firstName && errors.firstName}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <BadgeIcon
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <BadgeIcon
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
             />
 
@@ -93,17 +108,17 @@ const SignupForm = ({ setAuth }) => {
               helperText={touched.lastName && errors.lastName}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <BadgeIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <BadgeIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
             />
           </Stack>
@@ -124,17 +139,17 @@ const SignupForm = ({ setAuth }) => {
               helperText={touched.email && errors.email}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                    <EmailIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <EmailIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
             />
 
@@ -146,21 +161,21 @@ const SignupForm = ({ setAuth }) => {
               {...getFieldProps("password")}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <Icon
+                          icon={
+                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                          }
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
@@ -170,27 +185,27 @@ const SignupForm = ({ setAuth }) => {
               autoComplete="current-password"
               type={showPassword ? "text" : "password"}
               placeholder="CONFIRM PASSWORD"
-              {...getFieldProps("password")}
+              {...getFieldProps("confirmPassword")}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <Icon
+                          icon={
+                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                          }
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
-              error={Boolean(touched.password && errors.password)}
-              helperText={touched.password && errors.password}
+              error={Boolean(touched.confirmPassword && errors.confirmPassword)}
+              helperText={touched.confirmPassword && errors.confirmPassword}
             />
           </Stack>
 

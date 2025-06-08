@@ -15,8 +15,9 @@ const RootStyle = styled("div")({
 });
 
 const HeadingStyle = styled(Box)({
-  textAlign: "center",
-  paddingBottom: '10px'
+    textAlign: 'center',
+    paddingBottom: 10,
+    height: '200px'
 });
 
 const ContentStyle = styled("div")(({ isGoogleForm }) => ({
@@ -41,11 +42,16 @@ const Login = ({ setAuth, isGoogleForm }) => {
       navigate('/googleLogin');
     }
   };
+  const styObj = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
   return (
     <RootStyle>
       <Container maxWidth="sm">
         <ContentStyle>
-          <HeadingStyle component={motion.div}>
+          <HeadingStyle component={motion.div} style={isGoogleForm ? styObj : {}}>
             {isGoogleForm ? (
               <Typography
                 component={motion.p}

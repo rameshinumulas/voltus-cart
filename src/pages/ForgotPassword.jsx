@@ -16,7 +16,11 @@ const RootStyle = styled("div")({
 
 const HeadingStyle = styled(Box)({
   textAlign: "center",
-  paddingBottom: '25px'
+  paddingBottom: '25px',
+  height: 130,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
 });
 
 const ContentStyle = styled("div")({
@@ -32,10 +36,10 @@ const ContentStyle = styled("div")({
 });
 
 
-const ForgotPassword = ({ setAuth, isGoogleForm }) => {
+const ForgotPassword = ({ setAuth }) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-      navigate('/');
+    navigate('/');
   };
   return (
     <RootStyle>
@@ -47,18 +51,18 @@ const ForgotPassword = ({ setAuth, isGoogleForm }) => {
             </Typography>
           </HeadingStyle>
 
-          <ForgetPasswordForm setAuth={setAuth} isGoogleForm={isGoogleForm} />
-          
-            <Typography
-              component={motion.p}
-              variant="body2"
-              align="center"
-              sx={{ mt: 3 }}
-              style={{ cursor: 'pointer' }}
-              onClick={handleNavigate}
-            >
-                 Go to Login
-            </Typography>
+          <ForgetPasswordForm setAuth={setAuth} />
+
+          <Typography
+            component={motion.p}
+            variant="body2"
+            align="center"
+            sx={{ mt: 3 }}
+            style={{ cursor: 'pointer' }}
+            onClick={handleNavigate}
+          >
+            Go to Login
+          </Typography>
         </ContentStyle>
       </Container>
     </RootStyle>

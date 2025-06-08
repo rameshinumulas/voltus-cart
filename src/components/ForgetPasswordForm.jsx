@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
+import * as Yup from 'yup'
 import { useNavigate } from "react-router-dom";
-import BadgeIcon from '@mui/icons-material/Badge';
 import EmailIcon from '@mui/icons-material/Email';
 import {
   Stack,
@@ -31,19 +31,31 @@ const ForgetPasswordForm = ({ setAuth }) => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const SignupSchema = {};
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Email must be a valid email address")
+      .required("Email is required"),
+    oldPassword: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+    confirmPassword: Yup.string()
+      .required("Confirm Password is required")
+      .oneOf([Yup.ref('password')], "Passwords must match")
+  });
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
       email: "",
+      oldPassword: "",
       password: "",
+      confirmPassword: ''
     },
     validationSchema: SignupSchema,
     onSubmit: () => {
       setTimeout(() => {
-        setAuth(true);
         navigate("/", { replace: true });
       }, 2000);
     },
@@ -71,17 +83,17 @@ const ForgetPasswordForm = ({ setAuth }) => {
               helperText={touched.email && errors.email}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                    <EmailIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <EmailIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
             />
 
@@ -90,27 +102,27 @@ const ForgetPasswordForm = ({ setAuth }) => {
               autoComplete="current-password"
               type={showPassword ? "text" : "password"}
               placeholder="OLD PASSWORD"
-              {...getFieldProps("password")}
+              {...getFieldProps("oldPassword")}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <Icon
+                          icon={
+                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                          }
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
-              error={Boolean(touched.password && errors.password)}
-              helperText={touched.password && errors.password}
+              error={Boolean(touched.oldPassword && errors.oldPassword)}
+              helperText={touched.oldPassword && errors.oldPassword}
             />
 
             <TextField
@@ -121,21 +133,21 @@ const ForgetPasswordForm = ({ setAuth }) => {
               {...getFieldProps("password")}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <Icon
+                          icon={
+                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                          }
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
@@ -145,27 +157,27 @@ const ForgetPasswordForm = ({ setAuth }) => {
               autoComplete="current-password"
               type={showPassword ? "text" : "password"}
               placeholder="CONFIRM PASSWORD"
-              {...getFieldProps("password")}
+              {...getFieldProps("confirmPassword")}
               slotProps={{
                 input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton
-                      edge="start"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      <Icon
-                        icon={
-                          showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
-                        }
-                      />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton
+                        edge="start"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <Icon
+                          icon={
+                            showPassword ? "eva:eye-fill" : "eva:eye-off-fill"
+                          }
+                        />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }
               }}
-              error={Boolean(touched.password && errors.password)}
-              helperText={touched.password && errors.password}
+              error={Boolean(touched.confirmPassword && errors.confirmPassword)}
+              helperText={touched.confirmPassword && errors.confirmPassword}
             />
           </Stack>
 
