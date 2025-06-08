@@ -16,17 +16,19 @@ const RootStyle = styled("div")({
 
 const HeadingStyle = styled(Box)({
   textAlign: "center",
-  padding: '24px'
+  paddingBottom: 10
 });
 
 const ContentStyle = styled("div")({
   maxWidth: 480,
   padding: 25,
+  paddingTop: 10,
   margin: "auto",
   display: "flex",
   justifyContent: "center",
   flexDirection: "column",
   background: "#fff",
+  boxShadow: "0px 1px 2px 2px #e3e2eb"
 });
 
 

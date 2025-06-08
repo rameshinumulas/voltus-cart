@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormikProvider, useFormik } from "formik";
+import * as Yup from "yup";
 import Grid from '@mui/material/Grid';
 import {
   Box,
@@ -30,15 +31,24 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const LoginSchema = {};
+ const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Provide a valid email address")
+      .required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
 
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
-      remember: true,
+      password: ""
     },
     validationSchema: LoginSchema,
+    onSubmit: () => {
+      setTimeout(() => {
+        navigate('/welcomepage');
+      }, 2000);
+    },
   });
 
   const { errors, touched, isSubmitting, handleSubmit, getFieldProps } =

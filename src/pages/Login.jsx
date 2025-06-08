@@ -16,18 +16,20 @@ const RootStyle = styled("div")({
 
 const HeadingStyle = styled(Box)({
   textAlign: "center",
-  padding: '24px'
+  paddingBottom: '10px'
 });
 
-const ContentStyle = styled("div")({
+const ContentStyle = styled("div")(({ isGoogleForm }) => ({
   maxWidth: 480,
   padding: 25,
+  paddingTop: isGoogleForm ? 10 : 25, 
   margin: "auto",
   display: "flex",
   justifyContent: "center",
   flexDirection: "column",
   background: "#fff",
-});
+  boxShadow: "0px 1px 2px 2px #e3e2eb"
+}));
 
 
 const Login = ({ setAuth, isGoogleForm }) => {
@@ -50,7 +52,7 @@ const Login = ({ setAuth, isGoogleForm }) => {
                 variant="body2"
                 align="center"
                 sx={{ mt: 3 }}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', marginTop: '0px' }}
               >
                 Login with google{" "}
                 <p style={{ fontWeight: 'bold', fontSize: '24px', color: 'black', margin: '0px' }}>G</p>
