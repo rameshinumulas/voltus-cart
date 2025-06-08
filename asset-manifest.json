@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/voltus-cart/static/js/main.8c2276bb.js",
+    "static/js/453.1aa5b8cb.chunk.js": "/voltus-cart/static/js/453.1aa5b8cb.chunk.js",
+    "index.html": "/voltus-cart/index.html",
+    "main.8c2276bb.js.map": "/voltus-cart/static/js/main.8c2276bb.js.map",
+    "453.1aa5b8cb.chunk.js.map": "/voltus-cart/static/js/453.1aa5b8cb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.8c2276bb.js"
+  ]
+}
