@@ -5,6 +5,7 @@ import GoogleLogin from './pages/GoogleLogin';
 import Signup from './pages/Signup';
 import ForgotPassword from "./pages/ForgotPassword";
 import Welcomepage from "./pages/Welcomepage";
+import VoltusCart from "./pages/ValtusCart";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<Signup  />} />
           <Route path="/forgotPassword" element={<ForgotPassword  />} />
           <Route path="/welcomepage" element={<Welcomepage />} />
+          <Route path="/voltuscart" element={<VoltusCart />} />
         </Routes>
       </Router>
     </>
