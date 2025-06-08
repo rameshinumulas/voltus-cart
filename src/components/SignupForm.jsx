@@ -7,12 +7,9 @@ import EmailIcon from '@mui/icons-material/Email';
 import {
   Stack,
   Box,
-  TextField,
-  IconButton,
-  InputAdornment,
+  TextField
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import SuccessMessage from "../helpers/SuccessMessage";
 import { getInputAdornment } from "../helpers/getInputAdornment";
