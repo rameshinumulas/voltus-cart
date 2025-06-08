@@ -69,7 +69,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
               fullWidth
               autoComplete="username"
               type="email"
-              label="Email Address"
+              placeholder="Email Address"
               {...getFieldProps("email")}
               error={Boolean(touched.email && errors.email)}
               helperText={touched.email && errors.email}
@@ -78,6 +78,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
                   startAdornment: <InputAdornment position="start">
                     <IconButton
                       onClick={() => setShowPassword((prev) => !prev)}
+                      edge="start"
                     >
                       <Icon icon="eva:email-fill" />
                     </IconButton>
@@ -90,7 +91,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
               fullWidth
               autoComplete="current-password"
               type={showPassword ? "text" : "password"}
-              label="Password"
+              placeholder="Password"
               {...getFieldProps("password")}
               error={Boolean(touched.password && errors.password)}
               helperText={touched.password && errors.password}
@@ -98,6 +99,7 @@ const LoginForm = ({ setAuth, isGoogleForm }) => {
                 input: {
                   startAdornment: <InputAdornment position="start">
                     <IconButton
+                      edge="start"
                       onClick={() => setShowPassword((prev) => !prev)}
                     >
                       {showPassword ? (
