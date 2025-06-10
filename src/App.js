@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import ForgotPassword from "./pages/ForgotPassword";
 import Welcomepage from "./pages/Welcomepage";
 import VoltusCart from "./pages/ValtusCart";
+import ItemDetails from "./cart/ItemDetails";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/forgotPassword" element={<ForgotPassword  />} />
           <Route path="/welcomepage" element={<Welcomepage />} />
           <Route path="/voltuscart" element={<VoltusCart />} />
+          <Route path="/itemDetails/:id" element={<ItemDetails />} />
         </Routes>
       </Router>
     </>

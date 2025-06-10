@@ -1,9 +1,12 @@
 import { Box, Typography, Grid, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { products } from './cartlist'
+import { useNavigate } from "react-router-dom";
+
 
 const VoltusCart = () => {
     console.log(products, 'list');
+    const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -20,7 +23,9 @@ const VoltusCart = () => {
 
         <Grid container spacing={3}>
           {products.map((item, index) => (
-            <Grid item xs={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Grid item xs={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}
+              onClick={() =>  navigate(`/itemDetails/${item.id}`)}
+            >
               <IconButton color="inherit" size="large">
                 <img src={item.thumbnail} loading="lazy" width='200' height='200' alt="Product" />
               </IconButton>
